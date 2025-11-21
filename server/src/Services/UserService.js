@@ -148,6 +148,7 @@ class UserService {
           CONSTANTS.SERVER_BAD_REQUEST_HTTP_CODE
         );
       }
+      // return console.log("user------------------------------------",user)
 
       if (queryToken !== active_token) {
         return sendResponse(

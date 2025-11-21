@@ -6,7 +6,7 @@ const {TokenCheck}  = require('../Middlewares/TokenCheck')
 const {login,registerCustomer,verifyCustomer,getAllUsers,getUserById,getProfile,updateUser,deleteUser} = require('../Controllers/UserController')
 
 Router.post('/login',loginValidator,login)
-Router.post('/customer',registerValidator,registerCustomer)
+Router.post('/register',registerValidator,registerCustomer)
 
 Router.post('/verify',TokenCheck,verifyCustomer)
 Router.get('/',TokenCheck,getAllUsers)

@@ -56,9 +56,9 @@ class UserRepository {
     const fieldsToSearch = ["first_name", "last_name", "role"];
 
     let qr = fieldsToSearch
-      .filter((field) => query.hasOwnProperty(field))
+      .filter((field) => Object.prototype.hasOwnProperty.call(query, field))
       .map((f) => ({
-        [f]: f != "role" ? query[f] : query[f].toLowerCase(),
+        [f]: f !== "role" ? query[f] : query[f].toLowerCase(),
       }));
 
     // console.log(qr);
