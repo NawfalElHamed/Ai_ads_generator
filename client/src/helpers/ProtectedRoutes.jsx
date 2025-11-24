@@ -4,9 +4,12 @@ import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoute = () => {
-  const token = useSelector((state) => state.auth.token);
+  const tokenFromStore = useSelector((state) => state.auth.token);
 
-  if (!token) {
+  // If Redux doesn't have a token yet, try to get it from localStorage
+  const savedToken = tokenFromStore || localStorage.getItem("accessToken");
+
+  if (!savedToken) {
     return <Navigate to="/login" replace />;
   }
 

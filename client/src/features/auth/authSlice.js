@@ -75,7 +75,14 @@ const authSlice = createSlice({
     logout(state) {
       state.user = null;
       state.token = null;
+
+      // New clean version
       localStorage.removeItem("accessToken");
+      sessionStorage.removeItem("accessToken");
+
+      // Optional: clean old keys you used before
+      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
     },
     setToken(state, action) {
       state.token = action.payload;

@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  color: white;
+}
+
+/* Your global gradient */
+body {
+  background: linear-gradient(360deg, #0a4d4e 15%, #1a1038 50%, #2d1b4e 100%);
+  background-attachment: fixed;
+  background-size: cover;
+}

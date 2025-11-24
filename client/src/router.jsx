@@ -1,32 +1,44 @@
-// src/router/index.jsx
-import React from "react";
+// src/router.jsx
+import React, { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./helpers/ProtectedRoutes";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
-import DashboardPage from "./pages/DashboardPage";
+import MainLayout from "./layouts/MainLayout";
+
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+const DashboardPage = lazy(() => import("./pages/DashboardPage"));
+
+const withSuspense = (Element) => (
+  <Suspense fallback={<div>Loading...</div>}>{Element}</Suspense>
+);
 
 const router = createBrowserRouter([
   {
     path: "/login",
-    element: <LoginPage />,
+    element: withSuspense(<LoginPage />),
   },
   {
     path: "/register",
-    element: <RegisterPage />,
+    element: withSuspense(<RegisterPage />),
   },
   {
     element: <ProtectedRoute />,
     children: [
       {
-        path: "/dashboard",
-        element: <DashboardPage />,
+        // 🔥 all authenticated pages wrapped with MainLayout (logo + header)
+        element: <MainLayout />,
+        children: [
+          {
+            path: "/dashboard",
+            element: withSuspense(<DashboardPage />),
+          },
+        ],
       },
     ],
   },
   {
     path: "*",
-    element: <LoginPage />,
+    element: withSuspense(<LoginPage />),
   },
 ]);
 
