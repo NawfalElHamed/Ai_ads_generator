@@ -16,8 +16,10 @@ app.use(express.urlencoded({ extended: true }));
 
 
 const userRouter = require("./Routes/UserRoute");
+const aiRouter = require("./Routes/AiRoute");
 
 app.use("/users", userRouter);
+app.use("/ai", aiRouter);
 
 database.connectToMongo();
 
