@@ -17,3 +17,9 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
+
+@media (max-width: 900px) {
+  .generator-stack-col {
+    flex-direction: column !important;
+  }
+}

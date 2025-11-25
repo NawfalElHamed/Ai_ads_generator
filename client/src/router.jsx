@@ -4,9 +4,9 @@ import { createBrowserRouter } from "react-router-dom";
 import ProtectedRoute from "./helpers/ProtectedRoutes";
 import MainLayout from "./layouts/MainLayout";
 
-const LoginPage = lazy(() => import("./pages/LoginPage"));
-const RegisterPage = lazy(() => import("./pages/RegisterPage"));
-const DashboardPage = lazy(() => import("./pages/DashboardPage"));
+const LoginPage = lazy(() => import("./pages/Auth/LoginPage"));
+const RegisterPage = lazy(() => import("./pages/Auth/RegisterPage"));
+const GeneratorPage = lazy(() => import("./pages/Generator/Generator"));
 
 const withSuspense = (Element) => (
   <Suspense fallback={<div>Loading...</div>}>{Element}</Suspense>
@@ -29,8 +29,8 @@ const router = createBrowserRouter([
         element: <MainLayout />,
         children: [
           {
-            path: "/dashboard",
-            element: withSuspense(<DashboardPage />),
+            path: "/generator",
+            element: withSuspense(<GeneratorPage />),
           },
         ],
       },
